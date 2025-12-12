@@ -10,6 +10,7 @@ app.use(express.json());
 
 app.use("/api", downloadRoutes);
 
-app.listen(process.env.PORT, () => {
-  console.log("Servidor rodando na porta " + process.env.PORT);
+
+app.listen(3000, () => {
+  console.log("Servidor rodando na porta " + 3000);
 });
