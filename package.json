@@ -1,6 +1,9 @@
 {
   "name": "instaafferre",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "description": "instaAfferre",
   "main": "index.js",
   "scripts": {
@@ -24,8 +27,7 @@
     "axios": "^1.13.2",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
-    "express": "^5.2.1",
-    "playwright": "^1.57.0"
+    "express": "^5.2.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.11"
