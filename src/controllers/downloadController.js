@@ -4,26 +4,22 @@ import { getVideoFromInstagram } from "../utils/instagramScraper.js";
 const router = express.Router();
 
 router.post("/", async (req, res) => {
+  const { url } = req.body;
+
   try {
-    const { url } = req.body;
-
-    if (!url) {
-      return res.status(400).json({ error: "URL do reels é obrigatória" });
-    }
-
     const stream = await getVideoFromInstagram(url);
 
+    // 🔥 Cabeçalhos necessários para que o vídeo chegue íntegro
     res.setHeader("Content-Type", "video/mp4");
+    res.setHeader("Content-Disposition", "attachment; filename=reels.mp4");
+
+    // 🔥 Streaming direto do vídeo para o cliente
     stream.pipe(res);
 
-  } catch (err) {
-    console.error("Erro ao processar download:", err);
-    res.status(500).json({ error: "Erro ao baixar o vídeo" });
+  } catch (error) {
+    console.error("Erro ao processar download:", error);
+    res.status(500).json({ error: "Falha ao baixar o vídeo." });
   }
-});
-
-router.get("/", async (req,res) => {
-      res.send("OK");
 });
 
 export default router;

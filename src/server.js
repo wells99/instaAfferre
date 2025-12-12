@@ -1,18 +1,15 @@
+import "dotenv/config";
 import express from "express";
-import dotenv from "dotenv";
-
-dotenv.config();
+import cors from "cors";
+import downloadRoutes from "./routes/download.js";
 
 const app = express();
+
+app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("API Instagram Downloader está funcionando!");
+app.use("/api", downloadRoutes);
+
+app.listen(process.env.PORT, () => {
+  console.log("Servidor rodando na porta " + process.env.PORT);
 });
-
-// rota download será criada depois
-import downloadRouter from "./controllers/downloadController.js";
-app.use("/download", downloadRouter);
-
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Servidor rodando na porta http://localhost:${port}`));

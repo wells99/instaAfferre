@@ -11,7 +11,6 @@ export async function getVideoFromInstagram(postUrl) {
   page.on("request", (request) => {
     const url = request.url();
 
-    // procura por qualquer .mp4 carregado pelo reels
     if (url.includes(".mp4")) {
       videoUrl = url;
       console.log("MP4 encontrado:", videoUrl);
@@ -19,18 +18,18 @@ export async function getVideoFromInstagram(postUrl) {
   });
 
   await page.goto(postUrl, { waitUntil: "networkidle" });
-
-  // espera alguns segundos para o vídeo carregar de verdade
   await page.waitForTimeout(3000);
 
   await browser.close();
 
   if (!videoUrl) {
-    throw new Error("Não foi possível encontrar o link do vídeo .mp4");
+    throw new Error("Não foi possível encontrar o MP4");
   }
 
-  // download real
-  const response = await axios.get(videoUrl, { responseType: "stream" });
+  // 🔥 importante: pegar stream do axios
+  const response = await axios.get(videoUrl, {
+    responseType: "stream"
+  });
 
-  return response.data;
+  return response.data; // stream direto
 }
