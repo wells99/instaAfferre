@@ -1,0 +1,32 @@
+{
+  "name": "instaafferre",
+  "version": "1.0.0",
+  "description": "instaAfferre",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wells99/instaAfferre.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/wells99/instaAfferre/issues"
+  },
+  "homepage": "https://github.com/wells99/instaAfferre#readme",
+  "dependencies": {
+    "axios": "^1.13.2",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "playwright": "^1.57.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
